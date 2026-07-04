@@ -494,7 +494,7 @@ Content Creation: Scriptwriting (Odia), Video Tutorials, Social Media Content
 
 🔒 E-learning Content Creation
 
-📞 Connect With Me:
+📞 Connect With Me:9853895452
 
 📅 Nootech Computer Centre Facebook Page
 

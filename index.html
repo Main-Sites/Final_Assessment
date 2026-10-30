@@ -428,7 +428,7 @@
 
     document.querySelectorAll(".exam-link").forEach((link) => {
       link.addEventListener("click", (event) => {
-        if (!EXAM_APP_URL || EXAM_APP_URL.includes("https://script.google.com/macros/s/AKfycbwjlsO1qXoaL4oSV8T-ZkD8ZXOd9hcVHJNs4ogVx7ub0wQXefuqYHiLTHqvBdXw-TmS/exec")) {
+        if (!EXAM_APP_URL || EXAM_APP_URL.includes("paste your")) {
           event.preventDefault();
           alert("The examination portal link has not been configured yet. Please contact Nootech Computer Centre.");
           return;

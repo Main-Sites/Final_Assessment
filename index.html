@@ -1,185 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Final_Test Portal | Nootech Computer Centre</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101b3f">
+  <meta name="description" content="Take your online assessment through Nootech Computer Centre's secure examination portal.">
+  <title>Online Examination | Nootech Computer Centre</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1f2937; }
-
-    /* ===== HERO SECTION ===== */
+    :root {
+      --navy: #101b3f;
+      --navy-2: #172653;
+      --blue: #315eea;
+      --cyan: #28c6d5;
+      --ink: #18233e;
+      --muted: #66718a;
+      --line: #e7ebf3;
+      --surface: #ffffff;
+      --soft: #f4f7fc;
+      --green: #15966b;
+      --shadow: 0 24px 70px rgba(16, 27, 63, .13);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #f7f9fd;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .shell { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar {
+      color: #dce6ff;
+      background: #0b1431;
+      font-size: .84rem;
+    }
+    .topbar-inner {
+      min-height: 38px; display: flex; justify-content: space-between;
+      align-items: center; gap: 16px;
+    }
+    .topbar a { text-decoration: none; color: #fff; }
     header {
-     background: linear-gradient(135deg, #f1f1f1, #d1d5db, #3b0764);
-      background-size: 400% 400%;
-      animation: gradientShift 8s ease infinite;
-      color: #fff;
-      padding: 70px 20px;
-      text-align: center;
-      border-bottom-left-radius: 50px;
-      border-bottom-right-radius: 50px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid rgba(231,235,243,.9);
+      position: relative; z-index: 2;
     }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .nav {
+      min-height: 78px; display: flex; align-items: center;
+      justify-content: space-between; gap: 20px;
     }
-
-    header h1 { font-size: 2.8rem; margin-bottom: 15px; font-weight: 700; }
-    header h3 { font-weight: 400; font-size: 1.2rem; max-width: 800px; margin: auto; }
-
-    /* ===== FORM SECTION ===== */
-    .form-section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-      text-align: center;
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand-mark {
+      width: 46px; height: 46px; display: grid; place-items: center;
+      border-radius: 14px; color: white; font-weight: 900; font-size: 1.15rem;
+      letter-spacing: -1px; background: linear-gradient(140deg, var(--blue), #6849d8);
+      box-shadow: 0 8px 20px rgba(49,94,234,.25);
     }
-    .form-section p {
-      font-size: 1.1rem;
-      margin-bottom: 30px;
+    .brand-name { font-weight: 850; letter-spacing: -.35px; line-height: 1.2; }
+    .brand-name small {
+      display: block; margin-top: 4px; color: var(--muted);
+      font-size: .68rem; font-weight: 650; letter-spacing: 1.2px; text-transform: uppercase;
     }
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    .nav-tag {
+      display: inline-flex; align-items: center; gap: 8px; color: #3154b8;
+      background: #edf2ff; border: 1px solid #dce5ff; padding: 9px 14px;
+      border-radius: 999px; font-size: .82rem; font-weight: 750;
     }
-	  /* ===== CTC BUTTON SECTION ===== */
-	   .cta-button {
-      display: inline-block;
-      padding: 12px 24px;
-      background: #1e3a8a;
-      color: #fff;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s;
+    .live-dot { width: 8px; height: 8px; background: #19ad78; border-radius: 50%; box-shadow: 0 0 0 4px #d9f5e9; }
+    .hero {
+      position: relative; overflow: hidden; color: white;
+      background:
+        radial-gradient(circle at 82% 20%, rgba(40,198,213,.22), transparent 28%),
+        radial-gradient(circle at 10% 100%, rgba(91,91,255,.28), transparent 35%),
+        linear-gradient(118deg, #101b3f 0%, #172653 58%, #203b77 100%);
     }
-    .cta-button:hover {
-      background: #3b82f6;
+    .hero::after {
+      content: ""; position: absolute; width: 440px; height: 440px; right: -150px; bottom: -260px;
+      border: 1px solid rgba(255,255,255,.13); border-radius: 50%;
+      box-shadow: 0 0 0 45px rgba(255,255,255,.025), 0 0 0 90px rgba(255,255,255,.02);
     }
-	
-	/* ===== FOOTER ===== */
-    .footer {
-      background: #0f172a;
-      color: #fff;
-      text-align: center;
-      padding: 40px 20px;
-      font-size: 0.95rem;
-      border-top: 3px solid #ff7e5f;
+    .hero-grid {
+      min-height: 490px; padding: 72px 0 78px; display: grid;
+      grid-template-columns: 1.12fr .88fr; align-items: center; gap: 52px;
+      position: relative; z-index: 1;
     }
-
-    .social-links {
-      margin-top: 20px;
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; color: #aeeef3;
+      font-size: .76rem; font-weight: 800; letter-spacing: 1.7px; text-transform: uppercase;
+      margin-bottom: 20px;
     }
-    .social-links a {
-      display: inline-block;
-      margin: 0 10px;
-      color: #fff;
-      font-size: 1.2rem;
-      text-decoration: none;
-      transition: transform 0.3s, color 0.3s;
+    .eyebrow::before { content: ""; width: 25px; height: 2px; background: var(--cyan); }
+    h1 {
+      max-width: 690px; margin: 0; font-size: clamp(2.55rem, 5.4vw, 4.5rem);
+      line-height: 1.04; letter-spacing: -2.6px; font-weight: 850;
     }
-    .social-links a:hover {
-      transform: scale(1.1);
-      color: #feb47b;
+    h1 span { color: #65e0e5; }
+    .hero-copy { max-width: 570px; margin: 22px 0 30px; color: #c6d2f1; font-size: 1.08rem; }
+    .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 11px;
+      min-height: 54px; padding: 0 23px; border-radius: 13px; border: 0;
+      text-decoration: none; font: inherit; font-weight: 800; cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
     }
-
-    .social-links img {
-      width: 24px;
-      height: 24px;
-      vertical-align: middle;
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      color: #101b3f; background: linear-gradient(110deg, #71e5e5, #a4f0dc);
+      box-shadow: 0 12px 28px rgba(40,198,213,.2);
     }
-	 #timeUpMsg {
-      display: none;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: #b91c1c;
-      margin-top: 40px;
+    .btn-primary:hover { box-shadow: 0 16px 34px rgba(40,198,213,.3); }
+    .btn-outline { color: #fff; border: 1px solid rgba(255,255,255,.27); background: rgba(255,255,255,.06); }
+    .hero-note { margin-top: 17px; color: #aebcdd; font-size: .82rem; }
+    .exam-visual { display: flex; justify-content: center; }
+    .exam-card {
+      width: min(100%, 390px); padding: 25px; border: 1px solid rgba(255,255,255,.2);
+      border-radius: 24px; background: rgba(255,255,255,.09);
+      box-shadow: 0 25px 65px rgba(0,0,0,.18); backdrop-filter: blur(12px);
+      transform: rotate(1.5deg);
     }
-		
+    .exam-card-top { display: flex; justify-content: space-between; align-items: center; color: #d7e4ff; font-size: .78rem; }
+    .secure-pill { color: #a8f0d5; background: rgba(21,150,107,.18); padding: 6px 10px; border-radius: 99px; font-weight: 750; }
+    .mock-title { margin: 26px 0 5px; font-size: 1.35rem; font-weight: 800; }
+    .mock-sub { color: #bdc9e5; font-size: .85rem; }
+    .mock-line { height: 1px; background: rgba(255,255,255,.15); margin: 22px 0; }
+    .mock-question { color: #e5ebfa; font-weight: 700; font-size: .9rem; margin-bottom: 13px; }
+    .mock-option {
+      display: flex; align-items: center; gap: 10px; padding: 10px 12px; margin-top: 8px;
+      border: 1px solid rgba(255,255,255,.13); border-radius: 10px; color: #d1dcf3; font-size: .82rem;
+    }
+    .mock-option.active { background: rgba(40,198,213,.13); border-color: rgba(101,224,229,.65); color: white; }
+    .mock-radio { width: 15px; height: 15px; border: 1px solid #91a5d3; border-radius: 50%; }
+    .active .mock-radio { border: 4px solid #65e0e5; }
+    .mock-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; color: #b9c8e8; font-size: .77rem; }
+    .mock-progress { height: 5px; width: 100%; background: rgba(255,255,255,.15); border-radius: 20px; margin-top: 9px; overflow: hidden; }
+    .mock-progress span { display: block; width: 64%; height: 100%; background: linear-gradient(90deg,#65e0e5,#8e9dff); border-radius: inherit; }
+    .stats { margin-top: -30px; position: relative; z-index: 1; }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); background: white;
+      border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .stat { padding: 22px 28px; display: flex; align-items: center; gap: 15px; }
+    .stat + .stat { border-left: 1px solid var(--line); }
+    .stat-icon {
+      width: 43px; height: 43px; display: grid; place-items: center; flex: 0 0 auto;
+      border-radius: 13px; background: #eef3ff; color: var(--blue); font-size: 1.25rem;
+    }
+    .stat strong { display: block; font-size: .95rem; }
+    .stat span { display: block; color: var(--muted); font-size: .78rem; margin-top: 2px; }
+    section.content { padding: 78px 0 72px; }
+    .section-heading { text-align: center; max-width: 660px; margin: 0 auto 38px; }
+    .section-kicker { color: var(--blue); font-size: .75rem; font-weight: 850; letter-spacing: 1.5px; text-transform: uppercase; }
+    h2 { margin: 9px 0 10px; color: var(--navy); font-size: clamp(1.8rem,3vw,2.55rem); line-height: 1.15; letter-spacing: -1px; }
+    .section-heading p { margin: 0; color: var(--muted); }
+    .feature-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .feature {
+      padding: 25px; background: white; border: 1px solid var(--line); border-radius: 17px;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .feature:hover { transform: translateY(-4px); box-shadow: 0 15px 35px rgba(16,27,63,.07); }
+    .feature-icon {
+      width: 46px; height: 46px; display: grid; place-items: center; border-radius: 14px;
+      color: #315eea; background: #eef3ff; font-size: 1.35rem; margin-bottom: 17px;
+    }
+    .feature h3 { margin: 0 0 7px; font-size: 1.03rem; color: var(--navy); }
+    .feature p { margin: 0; color: var(--muted); font-size: .88rem; }
+    .instructions {
+      padding: 65px 0; background: white; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    }
+    .instruction-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 65px; align-items: start; }
+    .instruction-intro p { color: var(--muted); }
+    .help-chip {
+      display: inline-flex; align-items: center; gap: 8px; padding: 9px 12px;
+      border-radius: 10px; background: #effaf6; color: #137c5b; font-size: .8rem; font-weight: 750;
+      margin-top: 10px;
+    }
+    .steps { display: grid; gap: 17px; }
+    .step { display: flex; align-items: flex-start; gap: 15px; }
+    .step-number {
+      flex: 0 0 34px; height: 34px; display: grid; place-items: center; border-radius: 11px;
+      color: #315eea; background: #edf2ff; font-weight: 850; font-size: .85rem;
+    }
+    .step h3 { margin: 1px 0 3px; font-size: .95rem; }
+    .step p { margin: 0; color: var(--muted); font-size: .85rem; }
+    .notice {
+      display: flex; gap: 13px; align-items: flex-start; margin-top: 28px; padding: 17px 18px;
+      border: 1px solid #f3dfad; background: #fffaf0; color: #75551a; border-radius: 13px;
+      font-size: .84rem;
+    }
+    .notice strong { display: block; margin-bottom: 2px; }
+    .cta-wrap { padding: 65px 0; }
+    .cta {
+      padding: 42px; border-radius: 22px; color: white; text-align: center;
+      background: linear-gradient(115deg,#172653,#3154ad); box-shadow: 0 20px 50px rgba(23,38,83,.16);
+    }
+    .cta h2 { color: white; margin-top: 0; }
+    .cta p { color: #d0dcf8; margin: 0 auto 23px; max-width: 600px; }
+    .cta .btn { min-width: 220px; }
+    footer { padding: 25px 0; background: #0b1431; color: #aebbd9; font-size: .8rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+    .footer-inner strong { color: white; }
+    .footer-inner a { color: #d8e3ff; text-decoration: none; }
+    @media (max-width: 800px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 42px; padding: 58px 0 70px; }
+      .exam-visual { justify-content: flex-start; }
+      .exam-card { transform: none; }
+      .feature-grid { grid-template-columns: repeat(2,1fr); }
+      .instruction-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 560px) {
+      .shell { width: min(100% - 28px,1160px); }
+      .topbar-inner { justify-content: center; text-align: center; }
+      .topbar-inner span:last-child { display: none; }
+      .nav { min-height: 68px; }
+      .nav-tag { font-size: .72rem; padding: 8px 10px; }
+      .brand-mark { width: 41px; height: 41px; }
+      .brand-name { font-size: .91rem; }
+      .brand-name small { font-size: .59rem; }
+      .hero-grid { padding: 49px 0 62px; }
+      h1 { letter-spacing: -1.6px; }
+      .hero-copy { font-size: .96rem; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .hero-actions .btn { width: 100%; }
+      .stats { margin-top: -20px; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat { padding: 15px 18px; }
+      .stat + .stat { border-left: 0; border-top: 1px solid var(--line); }
+      section.content { padding: 62px 0; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .instructions { padding: 55px 0; }
+      .cta { padding: 32px 20px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>Welcome to Nootech Computer Centre's Final Test Portal</h1>
-    <h3>"A government-certified organization proudly continuing its successful journey in Computer Certificate Training Program Field for the last 8 years."</h3>
-    <h4>An Authorized Facilitation Centre for CCC/BCC/CCC+/ECC Examination – NIELIT, MeitY, Govt. of India</h4>
-     <h4>An Authorized Learning Centre for OKCL, (OS-CIT), Govt. of Odisha</h4>
-     <div class="timer" id="timer">Exam Time: 60:00</div>
-  </header>
-
-  <section class="form-section">
-    <p id="instruction-text">Please click the button below to start the exam:</p>
-    <div id="start-btn-section" style="text-align:center; margin-top: 30px;">
-      <a href="#" onclick="openExam(); return false;" class="cta-button">Start Exam</a>
-    </div>
-
-    <!-- Hidden iframe initially -->
-    <iframe id="examFrame"></iframe>
-    <p id="timeUpMsg">⏰ Time’s up! Your exam has ended. Please ensure your responses are submitted.</p>
-  </section>
-
-  <div class="footer">
-    &copy; 2025 Final Test Porta | Nootech Computer Centre. All rights reserved. | Empowering Digital Innovation
-    <div class="social-links">
-      <a href="https://facebook.com/yourpage" target="_blank" title="Facebook">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
-      </a>
-      <a href="https://instagram.com/yourprofile" target="_blank" title="Instagram">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-      </a>
+  <!-- Replace the URL in the EXAM_APP_URL constant near the bottom of this file. -->
+  <div class="topbar">
+    <div class="shell topbar-inner">
+      <span>NOOTECH COMPUTER CENTRE · ASHOKNAGAR, ATHGARH</span>
+      <span>Learn · Practice · Achieve</span>
     </div>
   </div>
-   <script>
-    let timerInterval;
 
-    function openExam() {
-      const frame = document.getElementById('examFrame');
-      const btnSection = document.getElementById('start-btn-section');
-      const instructionText = document.getElementById('instruction-text');
-      const timerDisplay = document.getElementById('timer');
+  <header>
+    <div class="shell nav">
+      <a class="brand" href="index.html" aria-label="Nootech Computer Centre home">
+        <span class="brand-mark">N</span>
+        <span class="brand-name">NOOTECH COMPUTER CENTRE<small>Digital Skills. Real Opportunities.</small></span>
+      </a>
+      <span class="nav-tag"><span class="live-dot"></span> Online Examination</span>
+    </div>
+  </header>
 
-       <!--  EXAM FORM LINK NO EXAM FORM URL https://forms.gle/ux4p4Ti65GBbTcLm6 -->
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <div class="eyebrow">NOOTECH FINAL ASSESSMENT</div>
+          <h1>Think clearly.<br>Answer confidently.<br><span>Achieve more.</span></h1>
+          <p class="hero-copy">
+            Welcome to the Nootech Computer Centre Final examination portal.
+            Complete your assessment through a focused, easy-to-use digital examination experience.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary exam-link" href="#" target="_blank" rel="noopener noreferrer">
+              Start Examination <span aria-hidden="true">→</span>
+            </a>
+            <a class="btn btn-outline" href="#instructions">Read Instructions</a>
+          </div>
+          <div class="hero-note">Keep your 10-digit mobile number and examination access code ready.</div>
+        </div>
 
-      frame.src = "https://forms.gle/bVgSs7kCtBLEdgSd6";
-      frame.style.display = "block";
-      btnSection.style.display = "none";
-      instructionText.style.display = "none";
+        <div class="exam-visual" aria-hidden="true">
+          <div class="exam-card">
+            <div class="exam-card-top">
+              <span>NOOTECH FINAL ASSESSMENT</span>
+              <span class="secure-pill">● Secure session</span>
+            </div>
+            <div class="mock-title">Your exam. Your opportunity.</div>
+            <div class="mock-sub">A simple and structured assessment experience</div>
+            <div class="mock-line"></div>
+            <div class="mock-question">Sample question interface</div>
+            <div class="mock-option active"><span class="mock-radio"></span> Clear and focused questions</div>
+            <div class="mock-option"><span class="mock-radio"></span> Easy answer navigation</div>
+            <div class="mock-option"><span class="mock-radio"></span> Review before submission</div>
+            <div class="mock-option"><span class="mock-radio"></span> Result after evaluation</div>
+            <div class="mock-footer"><span>Assessment progress</span><strong>Ready to begin</strong></div>
+            <div class="mock-progress"><span></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      startTimer(60 * 60, timerDisplay); // 60 minutes
-    }
+    <div class="shell stats" aria-label="Portal highlights">
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-icon" aria-hidden="true">◷</div>
+          <div><strong>Timed Assessment</strong><span>Complete within the allotted time</span></div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon" aria-hidden="true">✓</div>
+          <div><strong>Structured Evaluation</strong><span>Answers evaluated automatically</span></div>
+        </div>
+        <div class="stat">
+          <div class="stat-icon" aria-hidden="true">▣</div>
+          <div><strong>Result Summary</strong><span>View your score after submission</span></div>
+        </div>
+      </div>
+    </div>
 
-    function startTimer(duration, display) {
-      let timer = duration, minutes, seconds;
-      timerInterval = setInterval(() => {
-        minutes = Math.floor(timer / 60);
-        seconds = timer % 60;
-        display.textContent = `Exam Time: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-        
-        if (--timer < 0) {
-          clearInterval(timerInterval);
-          endExam();
+    <section class="content">
+      <div class="shell">
+        <div class="section-heading">
+          <div class="section-kicker">A better assessment experience</div>
+          <h2>Everything you need to take the test</h2>
+          <p>Follow the examination process carefully and give your best performance.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">◉</div>
+            <h3>Candidate Details</h3>
+            <p>Enter your name, valid 10-digit mobile number and examination date before proceeding.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">⌑</div>
+            <h3>Access Code</h3>
+            <p>Use the examination access code provided by the institute to unlock the test.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">◷</div>
+            <h3>Live Countdown</h3>
+            <p>Keep track of the remaining examination time while answering questions.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">☷</div>
+            <h3>Question Navigation</h3>
+            <p>Move between questions and review your responses before final submission.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">◇</div>
+            <h3>Exam Monitoring</h3>
+            <p>Keep the examination page active. Leaving the exam screen may trigger a violation warning.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">◎</div>
+            <h3>Instant Score Summary</h3>
+            <p>After successful submission, view the score and performance summary provided by the portal.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="instructions" id="instructions">
+      <div class="shell instruction-grid">
+        <div class="instruction-intro">
+          <div class="section-kicker">Before you begin</div>
+          <h2>Examination instructions</h2>
+          <p>Please read these instructions carefully. Starting the examination means you agree to follow the assessment rules.</p>
+          <div class="help-chip"><span aria-hidden="true">✓</span> Be prepared before clicking Start</div>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <span class="step-number">01</span>
+            <div><h3>Enter accurate candidate details</h3><p>Provide your full name, active 10-digit Indian mobile number and the correct examination date.</p></div>
+          </div>
+          <div class="step">
+            <span class="step-number">02</span>
+            <div><h3>Enter the authorised access code</h3><p>Obtain the code from Nootech Computer Centre. Do not share it with unauthorised persons.</p></div>
+          </div>
+          <div class="step">
+            <span class="step-number">03</span>
+            <div><h3>Stay on the examination screen</h3><p>Do not switch tabs, minimise the browser or leave the examination window. Screen changes may be recorded as violations.</p></div>
+          </div>
+          <div class="step">
+            <span class="step-number">04</span>
+            <div><h3>Manage your time and submit</h3><p>Answer the questions and submit before the timer expires. The system may submit automatically when time runs out or the violation limit is reached.</p></div>
+          </div>
+          <div class="step">
+            <span class="step-number">05</span>
+            <div><h3>Check your result</h3><p>Wait for the submission confirmation and review the score displayed by the examination portal.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="shell">
+        <div class="notice">
+          <span aria-hidden="true">⚠</span>
+          <div><strong>Important examination rule</strong>Use a stable internet connection and keep your device charged. Do not refresh or close the examination page while a test is in progress. If you experience a technical issue, contact the institute.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-wrap">
+      <div class="shell">
+        <div class="cta">
+          <h2>Ready to begin your examination?</h2>
+          <p>Find a quiet place, prepare your candidate details and access code, then proceed to the official Nootech examination portal.</p>
+          <a class="btn btn-primary exam-link" href="#" target="_blank" rel="noopener noreferrer">
+            Proceed to Examination <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <span>© <span id="year"></span> <strong>Nootech Computer Centre</strong>. All rights reserved.</span>
+      <span>Ashoknagar, Athgarh, Cuttack, Odisha</span>
+    </div>
+  </footer>
+
+  <script>
+    /*
+      IMPORTANT:
+      Replace the placeholder below with your deployed Google Apps Script
+      Web App URL ending in /exec. Keep the URL inside the quotation marks.
+    */
+    const EXAM_APP_URL = "https://script.google.com/macros/s/AKfycbwjlsO1qXoaL4oSV8T-ZkD8ZXOd9hcVHJNs4ogVx7ub0wQXefuqYHiLTHqvBdXw-TmS/exec";
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.querySelectorAll(".exam-link").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        if (!EXAM_APP_URL || EXAM_APP_URL.includes("PASTE_YOUR_")) {
+          event.preventDefault();
+          alert("The examination portal link has not been configured yet. Please contact Nootech Computer Centre.");
+          return;
         }
-      }, 1000);
-    }
-
-    function endExam() {
-      const frame = document.getElementById('examFrame');
-      const msg = document.getElementById('timeUpMsg');
-      frame.style.display = "none";
-      msg.style.display = "block";
-      document.getElementById('timer').textContent = "Exam Ended";
-      alert("⏰ Time is up! Your exam session has ended.");
-    }
+        link.href = EXAM_APP_URL;
+      });
+    });
   </script>
-
 </body>
 </html>
-
